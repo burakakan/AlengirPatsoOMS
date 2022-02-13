@@ -10,12 +10,9 @@ namespace AlengirPatso
     {
         public Ekstra(string ad, double fiyat) : base(ad, fiyat)
         {
-            this.Ad = ad;
-            this.Fiyat = fiyat;
+            Ad = ad;
+            Fiyat = fiyat;
         }
-        public override string ToString()
-        {
-            return Ad + "     - " + Fiyat.ToString() + " TL";
-        }
+        public override string ToString() => Ad + "     - " + Fiyat.ToString() + " TL";
     }
 }

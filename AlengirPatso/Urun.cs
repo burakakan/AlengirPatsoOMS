@@ -11,8 +11,8 @@ namespace AlengirPatso
     {
         public Urun(string ad, double fiyat)
         {
-            this.Ad = ad;
-            this.Fiyat = fiyat;
+            Ad = ad;
+            Fiyat = fiyat;
         }
         public double Fiyat { get; set; }
         public string Ad { get; set; }

@@ -25,6 +25,9 @@ namespace AlengirPatso
             cboMenuSecim.DataSource = MenuListesi;
             cboMenuSecim.DisplayMember = "ForComboBox";
 
+            Kucuk.Tag = 0;
+            Orta.Tag = 1;
+            Buyuk.Tag = 2;
             Orta.Checked = true;
 
             for (int i = 0; i < EkstraListesi.Count; i++)
@@ -41,14 +44,13 @@ namespace AlengirPatso
         {
             if (cboMenuSecim.SelectedIndex != 0)
             {
-                Menu secilmisMenu = (Menu)cboMenuSecim.SelectedItem;
+                Menu m = (Menu)cboMenuSecim.SelectedItem;
 
-                RadioButton optBoy = this.Controls.OfType<RadioButton>().FirstOrDefault(opt => opt.Checked);
+                Menu.Boy boySecimi = (Menu.Boy)Controls.OfType<RadioButton>().FirstOrDefault(opt => opt.Checked).Tag;
 
-                secilmisMenu.BoySecimi = (Menu.Boy)Enum.Parse(typeof(Menu.Boy), optBoy.Name);
+                Menu secilmisMenu = new Menu(m.Ad, m.Fiyat, boySecimi);
 
-                eklenmisMenuler.Add(new Menu(secilmisMenu.Ad,secilmisMenu.Fiyat,secilmisMenu.BoySecimi));
-
+                eklenmisMenuler.Add(secilmisMenu);
                 lstSiparisler.Items.Add(secilmisMenu);
             }
             foreach (CheckBox box in Controls.OfType<CheckBox>())
@@ -88,17 +90,15 @@ namespace AlengirPatso
             if (lstSiparisler.SelectedIndex != -1)
                 foreach (object entry in lstSiparisler.SelectedItems)
                 {
-                    if (entry.GetType() == typeof(Ekstra))
+                    if (entry is Ekstra)
                         eklenmisEkstralar.Remove((Ekstra)entry);
-                    else
+                    else if(entry is Menu)
                         eklenmisMenuler.Remove((Menu)entry);
 
                     cikarilacaklar.Add(entry);
                 }
             foreach (object urun in cikarilacaklar)
-            {
                 lstSiparisler.Items.Remove(urun);
-            }
         }
     }
 }

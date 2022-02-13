@@ -12,33 +12,36 @@ namespace AlengirPatso
         {
             Kucuk,
             Orta,
-            Buyuk,
+            Buyuk
         }
         public Menu(string ad, double bazFiyat) : base(ad, bazFiyat)
         {
-            this.Ad = ad;
-            this.Fiyat = bazFiyat;
+            Ad = ad;
+            Fiyat = bazFiyat;
         }
         public Menu(string ad, double bazFiyat, Boy boySecimi) : base(ad, bazFiyat)
         {
-            this.Ad = ad;
-            this.Fiyat = bazFiyat;
-            this.BoySecimi = boySecimi;
+            Ad = ad;
+            Fiyat = bazFiyat;
+            BoySecimi = boySecimi;
         }
         public Boy BoySecimi { get; set; }
-
-        public double SonFiyat
+        public double SonFiyat => Fiyat + (BoySecimi.GetHashCode() * 2);
+        public override string ToString() => Ad + " (" + BoyStr(BoySecimi) + ") - " + SonFiyat.ToString() + " TL";
+        public string ForComboBox => Ad + "       - " + Fiyat.ToString() + " TL";
+        public static string BoyStr(Menu.Boy b)
         {
-            get { return Fiyat + (BoySecimi.GetHashCode() * 2); }
+            switch (b)
+            {
+                case Boy.Kucuk:
+                    return "Küçük";
+                case Boy.Orta:
+                    return "Orta";
+                case Boy.Buyuk:
+                    return "Büyük";
+                default:
+                    return "";
+            }
         }
-        public override string ToString()
-        {
-            return Ad + " (" + BoySecimi + ") - " + SonFiyat.ToString() + " TL";
-        }
-        public string ToString(bool comboBox)
-        {
-            return Ad + "       - " + Fiyat.ToString() + " TL";
-        }
-        public string ForComboBox { get { return ToString(true); } }
     }
 }

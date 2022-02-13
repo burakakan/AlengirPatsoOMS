@@ -10,13 +10,11 @@ namespace AlengirPatso
     {
         public Siparis(List<Menu> menuler, List<Ekstra> ekstralar)
         {
-            this.Menuler = menuler;
-            this.Ekstralar = ekstralar;
+            Menuler = menuler;
+            Ekstralar = ekstralar;
         }
         public List<Menu> Menuler { get; set; }
-
         public List<Ekstra> Ekstralar { get; set; }
-
         public double Tutar
         {
             get
@@ -34,13 +32,11 @@ namespace AlengirPatso
         {
             string str = "";
             foreach (Menu menu in Menuler)
-            {
-                str += menu.Ad + " (" + menu.BoySecimi + "), ";
-            }
+                str += menu.Ad + " (" + Menu.BoyStr(menu.BoySecimi) + "), ";
+            
             foreach (Ekstra ekstra in Ekstralar)
-            {
                 str += ekstra.Ad + ", ";
-            }
+            
             try
             {
                 return str.Remove(str.Length - 2);
@@ -49,7 +45,6 @@ namespace AlengirPatso
             {
                 return "";
             }
-            
         }
     }
 }

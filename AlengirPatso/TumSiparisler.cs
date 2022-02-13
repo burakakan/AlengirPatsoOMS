@@ -17,7 +17,6 @@ namespace AlengirPatso
         {
             InitializeComponent();
         }
-
         private void TumSiparisler_Load(object sender, EventArgs e)
         {
             lstSiparisler.DataSource = tamamlanmisSiparisler;
